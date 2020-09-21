@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_demofactory_workers,demofactory.workers,model_demofactory_workers,base.group_user,1,1,1,1
+access_demofactory_parts,demofactory.parts,model_demofactory_parts,base.group_user,1,1,1,1
+access_demofactory_products,demofactory.products,model_demofactory_products,base.group_user,1,1,1,1
+access_demofactory_storagearea,demofactory.storagearea,model_demofactory_storagearea,base.group_user,1,1,1,1
+access_demofactory_processes,demofactory.processes,model_demofactory_processes,base.group_user,1,1,1,1
+access_demofactory_processrawmaterial,demofactory.processrawmaterial,model_demofactory_processrawmaterial,base.group_user,1,1,1,1

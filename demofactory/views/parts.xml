@@ -1,0 +1,49 @@
+<odoo>
+
+    <record model="ir.ui.view" id="workers_form_view">
+            <field name="name">parts.form</field>
+            <field name="model">demofactory.parts</field>
+            <field name="arch" type="xml">
+                <form string="Parts Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="item_price" />
+                            <field name="quantity"/>
+                            <field name="total_price"/>
+                            <field name="storage_area"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record model="ir.ui.view" id="parts_tree_view">
+            <field name="name">parts.tree</field>
+            <field name="model">demofactory.parts</field>
+            <field name="arch" type="xml">
+                <tree string="Parts Tree">
+                    <field name="name"/>
+                    <field name="item_price"/>
+                    <field name="quantity"/>
+                    <field name="storage_area"/>
+                </tree>
+            </field>
+    </record>
+
+
+     <record model="ir.actions.act_window" id="parts_list_action">
+            <field name="name">parts list</field>
+            <field name="res_model">demofactory.parts</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first raw material
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="parts_menu" name="raw material"
+                  parent="main_demofactory_menu" action="parts_list_action"/>
+
+
+</odoo>

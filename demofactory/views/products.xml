@@ -1,0 +1,66 @@
+<odoo>
+
+
+    <record model="ir.ui.view" id="products_form_view">
+            <field name="name">products.form</field>
+            <field name="model">demofactory.products</field>
+            <field name="arch" type="xml">
+                <form string="Products Form">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"></field>
+                </header>
+                <header>
+                    <!-- <field name="process_state" widget="statusbar" clickable="True"></field> -->
+                    <button name="start_process" string="Start" type="object" class="oe_highlight" attrs="{'invisible':[('process_state','=', 'running')]}"/>
+                    <button name="pause_process" string="Pause" type="object" class="oe_highlight" attrs="{'invisible':[('process_state','=', 'paused')]}"/>
+                    <button name="complete_process" string="End" type="object" class="oe_highlight" attrs="{'invisible':[('process_state','=', 'completed')]}"/>
+                    <field name="process_state" widget="statusbar" /> 
+                </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="price" />
+                            <field name="actual_cost"/>
+                            <field name="processes">
+                                <tree editable = "bottom">
+                                    <field name="name"/>
+                                    <field name="duration"/>
+                                    <field name="output"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="products_tree_view">
+            <field name="name">products.tree</field>
+            <field name="model">demofactory.products</field>
+            <field name="arch" type="xml">
+                <tree string="Products Tree">
+                    <field name="name"/>
+                    <field name="item_price"/>
+                    <field name="quantity"/>
+                    <field name="storage_area"/>
+                </tree>
+            </field>
+        </record> -->
+
+
+
+    <record model="ir.actions.act_window" id="products_list_action">
+            <field name="name">Products</field>
+            <field name="res_model">demofactory.products</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first product
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="main_demofactory_menu" name="Demo Factory"/>
+        <menuitem id="products_menu" name="products"
+                  parent="main_demofactory_menu" action="products_list_action"/>
+
+</odoo>

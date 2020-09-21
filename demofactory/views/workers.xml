@@ -1,0 +1,106 @@
+<odoo>
+
+    <!-- form view  -->
+    <record model="ir.ui.view" id="workers_form_view">
+            <field name="name">workers.form</field>
+            <field name="model">demofactory.workers</field>
+            <field name="arch" type="xml">
+                <form string="Workers Form">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="image" widget="'image"/>
+                            <field name="hours_number"/>
+                            <field name="hour_price"/>
+                        </group>
+                        <group>
+                            <field name="total_salary"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!--  list view  -->
+    <record model="ir.ui.view" id="workers_tree_view">
+            <field name="name">workers.tree</field>
+            <field name="model">demofactory.workers</field>
+            <field name="arch" type="xml">
+                <tree string="Workers Tree">
+                    <field name="name"/>
+                    <field name="hour_price"/>
+                    <field name="total_salary"/>
+                </tree>
+            </field>
+        </record>
+
+    <!--        Kanban View     -->
+    <record model="ir.ui.view" id="view_demofactory_workers_kanban">
+            <field name="name">demofactory.workers.kanban</field>
+            <field name="model">demofactory.workers</field>
+            <field name="arch" type="xml">
+                <kanban class="o_demofactory_workers_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="hours_number"/>
+                    <field name="hour_price"/>
+                    <field name="total_salary"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div >
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="o_kanban_image" >
+                                                <img  t-att-src="kanban_image('demofactory.workers','image', record.id.value)" style="max-width:150%" alt="worker"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="row ">
+                                                <h2><field name="name"/></h2>
+                                            </div>
+                                            <br/>
+                                            <div class="row ">
+                                                <pre> Working Hours: </pre>
+                                                <p><field name="hours_number"/></p>
+
+                                            </div>
+                                            <div class="row ">
+                                                <pre> Hour Cost: </pre>
+                                                <p><field name="hour_price"/></p>
+                                                <pre> EGP</pre>
+
+                                            </div>
+                                            <div class="row ">
+                                                <pre> Cost: </pre>
+                                                <p><field name="total_salary"/></p>
+                                                <pre> EGP</pre>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    <!--        End of Kanban View    -->
+
+     <record model="ir.actions.act_window" id="workers_list_action">
+            <field name="name">Workers</field>
+            <field name="res_model">demofactory.workers</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first worker
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="main_demofactory_menu" name="Demo Factory"/>
+        <menuitem id="workers_menu" name="workers"
+                  parent="main_demofactory_menu" action="workers_list_action"/>
+
+
+</odoo>
